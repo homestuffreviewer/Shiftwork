@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ปฏิทินกะ</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#EDF0F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#11141B" media="(prefers-color-scheme: dark)">
+<style>
+  html,body{margin:0;height:100%;background:#EDF0F5;font-family:sans-serif}
+  @media (prefers-color-scheme:dark){html,body{background:#11141B;color:#E7EBF3}}
+  iframe{position:fixed;inset:0;width:100%;height:100%;border:0}
+  .msg{padding:24px;line-height:1.6}
+</style>
+</head>
+<body>
+<script>
+  /* ↓↓↓ วางลิงก์เว็บแอปที่ลงท้ายด้วย /exec ระหว่างเครื่องหมาย ' ' ด้านล่าง ↓↓↓ */
+  const APP_URL = 'https://script.google.com/macros/s/AKfycbw0Vd837xcT-WvdNQv6OER1V46_yyCI8qHdDgN0wDqlRUz33-_ESpvZQogkPvRSBV6C/exec';
+  /* ↑↑↑ ---------------------------------------------------------------- ↑↑↑ */
+
+  if (/^https:\/\/script\.google\.com\/.+\/exec/.test(APP_URL)) {
+    const f = document.createElement('iframe');
+    f.src = APP_URL;
+    f.title = 'ปฏิทินกะ';
+    f.allow = 'clipboard-write';
+    document.body.appendChild(f);
+  } else {
+    document.body.innerHTML = '<p class="msg">ยังไม่ได้ใส่ลิงก์แอป แก้ค่า APP_URL ในไฟล์ index.html ให้เป็นลิงก์ที่ลงท้ายด้วย /exec</p>';
+  }
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>
